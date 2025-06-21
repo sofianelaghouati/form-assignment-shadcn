@@ -1,4 +1,4 @@
-import { DialogForm } from "./dialog-form"
+import { DialogForm } from "../dialog-form"
 import {
   Dialog,
   DialogTrigger,
@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { userSchema } from "../types/user" // adjust path if needed
+import { userSchema } from "../../types/user" // adjust path if needed
 import { z } from "zod"
 
 // ✅ Use the schema type without `id`

@@ -7,11 +7,11 @@ import {
 } from "@/components/ui/dialog"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { DialogForm } from "./dialog-form"
-import { userSchema } from "../types/user"
+import { DialogForm } from "../dialog-form"
+import { userSchema } from "../../types/user"
 import { z } from "zod"
 import { useEffect, useState } from "react"
-import type { User } from "../types/user"
+import type { User } from "../../types/user"
 
 type UserForm = z.infer<typeof userSchema>
 

@@ -3,10 +3,10 @@ import { DataTable } from "./data-table"
 import { useState } from "react"
 import { initialUsers } from "../helpers/defaultValues"
 import { type User } from "../types/user"
-import { AddUserDialog } from "../forms/add-user-dialog"
+import { AddUserDialog } from "../forms/dialogs/add-user-dialog"
 import { userSchema } from "../types/user"
 import { z } from "zod"
-import { EditUserDialog } from "../forms/edit-user-dialog"
+import { EditUserDialog } from "../forms/dialogs/edit-user-dialog"
 
 export default function Page() {
   const [users, setUsers] = useState<User[]>(initialUsers)
