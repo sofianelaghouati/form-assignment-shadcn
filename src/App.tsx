@@ -1,4 +1,4 @@
-import Page from './crud/user/page'
+import Page from './crud-app/home/page'
 import { ThemeProvider } from './components/ui/theme-provider'
 
 function App() {
