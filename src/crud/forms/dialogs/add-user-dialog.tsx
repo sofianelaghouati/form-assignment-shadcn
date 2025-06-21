@@ -1,4 +1,4 @@
-import { DialogForm } from "../dialog-form"
+import { DialogForm } from "../form-content/dialog-form"
 import {
   Dialog,
   DialogTrigger,

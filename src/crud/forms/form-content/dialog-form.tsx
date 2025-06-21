@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import { positions } from "../helpers/positions"
+import { positions } from "../../helpers/positions"
 
 export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any) => void }) {
   return (
