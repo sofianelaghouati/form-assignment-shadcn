@@ -14,9 +14,12 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { positions } from "../../helpers/positions"
+import { initialUsers } from "@/crud-app/helpers/defaultValues"
+import { Checkbox } from "@/components/ui/checkbox"
 
 export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any) => void }) {
   return (
@@ -57,7 +60,7 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="col-span-1 sm:col-span-2">
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input type="email" placeholder="Email" {...field} />
@@ -66,16 +69,41 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
-          name="role"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Rôle</FormLabel>
-              <FormControl>
-                <Input placeholder="Rôle" {...field} />
-              </FormControl>
+          name="items"
+          render={() => (
+            <FormItem className="col-span-1 sm:col-span-2">
+              <div className="mb-4">
+                <FormLabel className="text-base">Roles</FormLabel>
+                <FormDescription>
+                  Sélectionne les rôles à attribuer à l'utilisateur :
+                </FormDescription>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {initialUsers.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="items"
+                    render={({ field }) => (
+                      <FormItem className="flex items-start space-x-2">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value?.includes(item.id)}
+                            onCheckedChange={(checked) => {
+                              console.log(field)
+                            }}
+                          />
+                        </FormControl>
+                        <FormLabel className="text-sm font-normal">
+                          {item.role}
+                        </FormLabel>
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </div>
               <FormMessage />
             </FormItem>
           )}

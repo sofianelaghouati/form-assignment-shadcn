@@ -17,8 +17,11 @@ import {
   getSortedRowModel,
   type ColumnFiltersState,
   getFilteredRowModel,
+  getPaginationRowModel,
 } from "@tanstack/react-table"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import type { text } from "stream/consumers"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -42,6 +45,7 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       sorting,
       columnFilters,
@@ -94,6 +98,25 @@ export function DataTable<TData, TValue>({
             ))}
           </TableBody>
         </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Précédent
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()
+          }
+        >
+          Suivant
+        </Button>
       </div>
     </div>
   )
