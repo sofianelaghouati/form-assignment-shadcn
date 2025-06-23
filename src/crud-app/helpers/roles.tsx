@@ -1,0 +1,23 @@
+export const roles: string[] = [
+  "Admin",
+  "Manager",
+  "User",
+  "Developer",
+  "Designer",
+  "IT",
+  "Frontend",
+  "Backend",
+  "HR",
+  "Security",
+  "Product",
+  "CTO",
+  "Marketing",
+  "Tester",
+  "Legal",
+  "Support",
+  "Finance",
+  "Ops",
+  "Content",
+  "Social",
+  "Analytics"
+];

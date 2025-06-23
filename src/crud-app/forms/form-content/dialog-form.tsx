@@ -20,8 +20,10 @@ import { Button } from "@/components/ui/button"
 import { positions } from "../../helpers/positions"
 import { initialUsers } from "@/crud-app/helpers/defaultValues"
 import { Checkbox } from "@/components/ui/checkbox"
+import { roles } from "@/crud-app/helpers/roles"
+import type { User } from "@/crud-app/types/user"
 
-export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any) => void }) {
+export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: User) => void }) {
   return (
     <Form {...form}>
       <form
@@ -81,23 +83,23 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any
                 </FormDescription>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {initialUsers.map((item) => (
+                {roles.map((r) => (
                   <FormField
-                    key={item.id}
+                    key={r}
                     control={form.control}
                     name="items"
                     render={({ field }) => (
                       <FormItem className="flex items-start space-x-2">
                         <FormControl>
                           <Checkbox
-                            checked={field.value?.includes(item.id)}
+                            checked={field.value?.includes(r)}
                             onCheckedChange={(checked) => {
-                              console.log(field)
+                              console.log(checked)
                             }}
                           />
                         </FormControl>
                         <FormLabel className="text-sm font-normal">
-                          {item.role}
+                          {r}
                         </FormLabel>
                       </FormItem>
                     )}
@@ -108,6 +110,7 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: any
             </FormItem>
           )}
         />
+
 
         <FormField
           control={form.control}
