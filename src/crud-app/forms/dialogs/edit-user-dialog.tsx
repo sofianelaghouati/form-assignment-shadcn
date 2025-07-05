@@ -30,7 +30,7 @@ export function EditUserDialog({
       nom: "",
       prenom: "",
       email: "",
-      role: "",
+      role: [""],
       position: "",
     },
   })

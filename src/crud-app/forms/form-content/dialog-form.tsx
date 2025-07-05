@@ -18,12 +18,13 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { positions } from "../../helpers/positions"
-import { initialUsers } from "@/crud-app/helpers/defaultValues"
 import { Checkbox } from "@/components/ui/checkbox"
 import { roles } from "@/crud-app/helpers/roles"
 import type { User } from "@/crud-app/types/user"
 
+
 export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: User) => void }) {
+
   return (
     <Form {...form}>
       <form
@@ -73,7 +74,7 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: Use
         />
         <FormField
           control={form.control}
-          name="items"
+          name="role"
           render={() => (
             <FormItem className="col-span-1 sm:col-span-2">
               <div className="mb-4">
@@ -83,26 +84,32 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: Use
                 </FormDescription>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {roles.map((r) => (
+                {roles.map((role) => (
                   <FormField
-                    key={r}
+                    key={role}
                     control={form.control}
-                    name="items"
-                    render={({ field }) => (
-                      <FormItem className="flex items-start space-x-2">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(r)}
-                            onCheckedChange={(checked) => {
-                              console.log(checked)
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="text-sm font-normal">
-                          {r}
-                        </FormLabel>
-                      </FormItem>
-                    )}
+                    name="role"
+                    render={({ field }) => {
+                      const currentRoles = field.value || [];
+                      const isChecked = currentRoles.includes(role);
+                      return (
+                        <FormItem className="flex items-start space-x-2">
+                          <FormControl>
+                            <Checkbox
+                              checked={isChecked}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  field.onChange([...currentRoles, role]);
+                                } else {
+                                  field.onChange(currentRoles.filter((r: string) => r !== role));
+                                }
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="text-sm font-normal">{role}</FormLabel>
+                        </FormItem>
+                      );
+                    }}
                   />
                 ))}
               </div>
@@ -110,6 +117,7 @@ export function DialogForm({ form, onSubmit }: { form: any; onSubmit: (data: Use
             </FormItem>
           )}
         />
+
 
 
         <FormField
